@@ -1,28 +1,27 @@
-import { ethers } from "ethers";
-import fs from "fs";
+import hre from "hardhat";
 
 const main = async () => {
-  // Connect to local Hardhat node
-  const provider = new ethers.JsonRpcProvider("http://127.0.0.1:8545");
-  const signer = provider.getSigner(0);
+  // Get the contract factory
+  const transactionsFactory = await hre.ethers.getContractFactory("Transactions");
+  
+  // Deploy the contract
+  const transactionsContract = await transactionsFactory.deploy();
 
-  // Load compiled contract JSON
-  const contractJson = JSON.parse(
-    fs.readFileSync("./artifacts/contracts/Transactions.sol/Transactions.json", "utf8")
-  );
+  // Wait for deployment to finish
+  await transactionsContract.deployed();
 
-  // Create contract factory
-  const factory = new ethers.ContractFactory(contractJson.abi, contractJson.bytecode, signer);
-
-  // Deploy contract
-  const contract = await factory.deploy();
-
-  await contract.waitForDeployment();
-
-  console.log("Transactions address:", contract.target);
+  console.log("Transactions deployed at:", transactionsContract.target || transactionsContract.address);
 };
 
-main().catch((error) => {
-  console.error(error);
-  process.exit(1);
-});
+// Wrapper to run main and handle errors
+const runMain = async () => {
+  try {
+    await main();
+    process.exit(0);
+  } catch (error) {
+    console.error(error);
+    process.exit(1);
+  }
+};
+
+runMain();

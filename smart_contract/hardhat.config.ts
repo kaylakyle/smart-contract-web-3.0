@@ -1,15 +1,12 @@
-// scripts/showAccounts.js
-import { ethers } from "hardhat";
+import { defineConfig } from "hardhat/config";
 
-async function main() {
-  const signers = await ethers.getSigners();
-
-  signers.forEach((signer, i) => {
-    console.log(`Account #${i}: ${signer.address}`);
-  });
-}
-
-main().catch((error) => {
-  console.error(error);
-  process.exit(1);
+export default defineConfig({
+  solidity: {
+    version: "0.8.28",
+  },
+  networks: {
+    localhost: {
+      url: "http://127.0.0.1:8545",
+    },
+  },
 });

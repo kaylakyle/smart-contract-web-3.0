@@ -1,27 +1,31 @@
-import hre from "hardhat";
+import { ethers } from "ethers";
+import fs from "fs";
+
+// URL of your running Hardhat node
+const provider = new ethers.JsonRpcProvider("http://127.0.0.1:8545");
 
 const main = async () => {
-  // Get the contract factory
-  const transactionsFactory = await hre.ethers.getContractFactory("Transactions");
-  
+  // Get the first signer from the local node
+  const signer = provider.getSigner(0);
+
+  // Load compiled contract JSON
+  const contractJson = JSON.parse(
+    fs.readFileSync("./artifacts/contracts/Transactions.sol/Transactions.json", "utf8")
+  );
+
+  // Create a contract factory
+  const factory = new ethers.ContractFactory(contractJson.abi, contractJson.bytecode, signer);
+
   // Deploy the contract
-  const transactionsContract = await transactionsFactory.deploy();
+  const contract = await factory.deploy();
 
-  // Wait for deployment to finish
-  await transactionsContract.deployed();
+  // Wait for deployment to be mined
+  await contract.waitForDeployment();
 
-  console.log("Transactions deployed at:", transactionsContract.target || transactionsContract.address);
+  console.log("Transactions deployed at:", contract.target); // ethers v6 uses 'target'
 };
 
-// Wrapper to run main and handle errors
-const runMain = async () => {
-  try {
-    await main();
-    process.exit(0);
-  } catch (error) {
-    console.error(error);
-    process.exit(1);
-  }
-};
-
-runMain();
+main().catch((err) => {
+  console.error(err);
+  process.exit(1);
+});

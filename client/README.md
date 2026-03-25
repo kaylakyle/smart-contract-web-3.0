@@ -1,6 +1,6 @@
 
 
-This template   
+  
 
 Currently, two official plugins are available:
 

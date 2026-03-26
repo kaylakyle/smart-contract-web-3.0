@@ -1,4 +1,4 @@
-- [@vitejs/plugin-react-swc](https://github.com
+- [@vitejs/plugin-react-swc](
 
 
 

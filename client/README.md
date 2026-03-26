@@ -1,4 +1,4 @@
-- [@vitejs/plugin-react-swc](
+- [@vitejs/plugin
 
 
 

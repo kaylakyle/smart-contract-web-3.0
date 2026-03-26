@@ -1,4 +1,4 @@
-The React Compiler is not enabled on this template because of  
+The React Compiler is not enabled on this 
 
 ## Expanding the ESLint configuration
 

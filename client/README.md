@@ -1,4 +1,4 @@
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react
 
 ## React Compiler
 

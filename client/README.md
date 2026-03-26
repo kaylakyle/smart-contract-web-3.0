@@ -1,4 +1,4 @@
-The React Compiler is not enabled on this template because of its impact on dev & build performances.
+The React Compiler is not enabled on this template because of its impact on dev & 
 
 ## Expanding the ESLint configuration
 

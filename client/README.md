@@ -1,4 +1,4 @@
-The React Compiler is not 
+The React 
 
 ## Expanding the ESLint configuration
 

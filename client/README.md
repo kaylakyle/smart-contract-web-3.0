@@ -1,4 +1,4 @@
-The React 
+
 
 ## Expanding the ESLint configuration
 

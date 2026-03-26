@@ -1,4 +1,4 @@
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react
+- [@vitejs/plugin-react-swc](https://github.com/vitejs
 
 ## React Compiler
 
